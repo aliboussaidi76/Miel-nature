@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شكراً لك!</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        :root {
+            --primary-color: #ff914d;
+            --secondary-color: #ffb74d;
+            --dark-color: #1a4d29;
+            --light-color: #f0f8f0;
+            --button-dark-color: #4a6c4c;
+            --font-family: 'Cairo', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: #FFF8E1;
+            color: var(--dark-color);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 15px;
+        }
+
+        .thankyou-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .thankyou-container h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .thankyou-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            display: block;
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .product-card.selected {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 1.1rem;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        .product-card p {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .product-card .cta-button {
+            display: none;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .product-card.selected .cta-button {
+            display: inline-block;
+        }
+        
+        .product-card .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .product-info-message {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: var(--dark-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thankyou-container">
+            <h1>✅ شكراً، استلمنا طلبك!</h1>
+            <p>سوف نتواصل معك قريباً لتأكيد الطلب عبر الهاتف.</p>
+        </div>
+        
+        <div class="upsell-section">
+            <h2 class="section-title">قد يعجبك أيضاً...</h2>
+            <p class="product-info-message">اضغط على أي منتج لمعرفة المزيد وطلبه.</p>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-product="honey-for-men">
+                    <img src="https://i.imgur.com/vHq05sM.jpg" alt="خلطة عسل للرجال">
+                    <h3>خلطة عسل زيادة القدرة للرجال</h3>
+                    <p>طاقة لا تنتهي وحيوية متجددة، مزيج طبيعي لتعزيز الأداء والحيوية اليومية.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-product="flower-honey-cough">
+                    <img src="https://i.imgur.com/QkR4FjR.jpg" alt="عسل الأزهار للسعال">
+                    <h3>عسل الأزهار للسعال الحاد</h3>
+                    <p>وداعاً للسعال المزعج، تنفس بعمق وراحة. قوة طبيعية لتهدئة الحلق وتخفيف الاحتقان.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-product="sidr-honey">
+                    <img src="https://i.imgur.com/u5uFqR0.jpg" alt="عسل السدر">
+                    <h3>عسل السدر الفاخر</h3>
+                    <p>كنز الطبيعة في قطرة واحدة، مذاق لا يُنسى وفوائد صحية لا حصر لها. عسل نادر وغني.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-product="weight-gain-honey">
+                    <img src="https://i.imgur.com/O6Ld06P.jpg" alt="خلطة التسمين">
+                    <h3>خلطة التسمين الصحية للرجال والنساء</h3>
+                    <p>مزيج متكامل لزيادة الوزن بطريقة صحية وطبيعية، يمد الجسم بالطاقة والعناصر الغذائية الأساسية.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-product="royal-jelly-mix">
+                    <img src="https://i.imgur.com/yK5zD7q.jpg" alt="خلطة غذاء ملكات النحل">
+                    <h3>خلطة غذاء ملكات النحل</h3>
+                    <p>سِرّ النشاط والحيوية، يعزز المناعة والتركيز ويمنحك طاقة إضافية لبدء يومك بقوة.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-product="pollen-honey">
+                    <img src="https://i.imgur.com/hY6rX4t.jpg" alt="عسل بحبوب اللقاح">
+                    <h3>عسل بحبوب اللقاح</h3>
+                    <p>قوة الطبيعة الخام لبناء جسم صحي ومناعة قوية. مصدر غني بالبروتين والفيتامينات والمعادن.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+
+                <!-- Product 7 -->
+                <div class="product-card" data-product="honey-for-kids-nuts">
+                    <img src="https://i.imgur.com/xI1oF61.jpg" alt="عسل للأطفال بالمكسرات">
+                    <h3>عسل الأطفال بالمكسرات</h3>
+                    <p>لنمو صحي وذاكرة قوية، مذاق يحبه الأطفال! بديل صحي ومغذي للحلويات.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card" data-product="honey-ginger-lemon">
+                    <img src="https://i.imgur.com/u1D4P9J.jpg" alt="عسل بالزنجبيل والليمون">
+                    <h3>عسل بالزنجبيل والليمون</h3>
+                    <p>دفء وراحة في كل ملعقة. الحل السريع والأفضل لنزلات البرد والتهاب الحلق.</p>
+                    <a href="#" class="cta-button" target="_blank">اطلب الآن عبر واتساب</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productCards = document.querySelectorAll('.product-card');
+
+            productCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    // Remove 'selected' class from all cards
+                    productCards.forEach(c => c.classList.remove('selected'));
+                    // Add 'selected' class to the clicked card
+                    card.classList.add('selected');
+                    
+                    // Update the WhatsApp link
+                    const productTitle = card.querySelector('h3').innerText;
+                    const message = `أود الاستفسار عن منتج: ${productTitle}`;
+                    const whatsappLink = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                    card.querySelector('.cta-button').href = whatsappLink;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
