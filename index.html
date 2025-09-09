@@ -27,6 +27,7 @@
             line-height: 1.6;
             background-color: #FFF8E1;
             color: var(--dark-color);
+            padding-bottom: 70px; /* لترك مساحة للزر الثابت */
         }
 
         .container {
@@ -154,20 +155,24 @@
         }
         
         .cta-container {
+            position: fixed;
+            bottom: 15px; /* تم تعديله لرفعه قليلاً */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            width: auto;
         }
 
         .cta-button {
             display: inline-block;
             background: #FF5722;
             color: white;
-            padding: 12px 30px;
+            padding: 10px 25px; /* تم تصغير الحجم */
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 1rem; /* تم تصغير حجم الخط */
             border: none;
             cursor: pointer;
             transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
@@ -624,9 +629,6 @@
         <div class="container" style="text-align: center; margin-top: 15px;">
             <h2>حماية من الحلويات الضارة</h2>
             <p>طفلك يستحق أفضل ما في الطبيعة. قل وداعًا للسكريات المصنعة التي تضر بصحته وذكائه، واستبدلها بحلاوة طبيعية مفيدة!</p>
-            <div class="cta-container">
-                <a href="#order" class="cta-button">اطلب الآن</a>
-            </div>
         </div>
     </section>
 
@@ -713,10 +715,14 @@
             </ul>
         </div>
     </section>
+    
+    <div class="cta-container">
+        <a href="#order" class="cta-button">اطلب الآن</a>
+    </div>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 جميع الحقوق محفوظة. [اسم شركتك أو علامتك التجارية]</p>
+            <p>&copy; 2025 جميع الحقوق محفوظة لشركة مناحل وعسل آل بوسعيدي</p>
         </div>
     </footer>
 
@@ -766,14 +772,6 @@
             return `ألف ${(price / 1000).toLocaleString('ar-DZ')}`;
         }
 
-        function formatDeliveryPrice(price) {
-            return `ألف ${(price / 1000).toLocaleString('ar-DZ')}`;
-        }
-
-        function formatTotalPrice(price) {
-            return `${(price / 1000).toLocaleString('ar-DZ')} ألف`;
-        }
-
         function updateOrderSummary() {
             const selectedOfferId = selectedOfferInput.value;
             const selectedState = stateSelect.value;
@@ -783,8 +781,8 @@
             const totalPrice = offerPrice + deliveryPrice;
 
             summaryOfferPrice.textContent = formatPrice(offerPrice);
-            summaryDeliveryPrice.textContent = formatDeliveryPrice(deliveryPrice);
-            summaryTotalPrice.textContent = formatTotalPrice(totalPrice);
+            summaryDeliveryPrice.textContent = formatPrice(deliveryPrice);
+            summaryTotalPrice.textContent = formatPrice(totalPrice);
             
             productPriceInput.value = offerPrice;
             deliveryPriceInput.value = deliveryPrice;
@@ -832,5 +830,3 @@
     </script>
 </body>
 </html>
-
-
