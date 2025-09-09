@@ -463,6 +463,47 @@
             margin-top: 40px;
             font-size: 0.8rem;
         }
+
+        /* Confirmation Message Styles */
+        .confirmation-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            z-index: 1001;
+            display: none; /* Initially hidden */
+            border: 2px solid var(--primary-color);
+        }
+
+        .confirmation-message h3 {
+            color: var(--button-dark-color);
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+
+        .confirmation-message p {
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        .confirmation-message .close-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background-color: var(--button-dark-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -543,65 +584,65 @@
                     <select id="wilaya" name="wilaya" required>
                         <option value="0">اختر ولايتك</option>
                         <!-- تم تغيير قيم الولايات لتكون بالدينار الحقيقي -->
-                        <option value="100000">أدرار</option>
-                        <option value="60000">الشلف</option>
-                        <option value="80000">الأغواط</option>
-                        <option value="80000">أم البواقي</option>
-                        <option value="80000">باتنة</option>
-                        <option value="60000">بجاية</option>
-                        <option value="80000">بسكرة</option>
-                        <option value="80000">بشار</option>
-                        <option value="60000">البليدة</option>
-                        <option value="60000">البويرة</option>
-                        <option value="100000">تمنراست</option>
-                        <option value="80000">تبسة</option>
-                        <option value="60000">تلمسان</option>
-                        <option value="80000">تيارت</option>
-                        <option value="60000">تيزي وزو</option>
-                        <option value="50000">الجزائر</option>
-                        <option value="80000">الجلفة</option>
-                        <option value="60000">جيجل</option>
-                        <option value="80000">سطيف</option>
-                        <option value="80000">سعيدة</option>
-                        <option value="60000">سكيكدة</option>
-                        <option value="60000">سيدي بلعباس</option>
-                        <option value="60000">عنابة</option>
-                        <option value="60000">قالمة</option>
-                        <option value="60000">قسنطينة</option>
-                        <option value="80000">المدية</option>
-                        <option value="60000">مستغانم</option>
-                        <option value="80000">المسيلة</option>
-                        <option value="60000">معسكر</option>
-                        <option value="100000">ورقلة</option>
-                        <option value="60000">وهران</option>
-                        <option value="80000">البيض</option>
-                        <option value="100000">إليزي</option>
-                        <option value="80000">برج بوعريريج</option>
-                        <option value="60000">بومرداس</option>
-                        <option value="60000">الطارف</option>
-                        <option value="100000">تندوف</option>
-                        <option value="80000">تيسمسيلت</option>
-                        <option value="100000">الوادي</option>
-                        <option value="80000">خنشلة</option>
-                        <option value="60000">سوق أهراس</option>
-                        <option value="60000">تيبازة</option>
-                        <option value="60000">ميلة</option>
-                        <option value="60000">عين الدفلى</option>
-                        <option value="80000">النعامة</option>
-                        <option value="60000">عين تموشنت</option>
-                        <option value="100000">غرداية</option>
-                        <option value="60000">غليزان</option>
-                        <option value="100000">تيميمون</option>
-                        <option value="100000">برج باجي مختار</option>
-                        <option value="100000">أولاد جلال</option>
-                        <option value="100000">بني عباس</option>
-                        <option value="100000">عين صالح</option>
-                        <option value="100000">عين قزام</option>
-                        <option value="100000">تقرت</option>
-                        <option value="100000">المنيعة</option>
-                        <option value="100000">المغير</option>
-                        <option value="100000">جانت</option>
-                        <option value="60000">الميزاب</option>
+                        <option value="10000">أدرار</option>
+                        <option value="6000">الشلف</option>
+                        <option value="8000">الأغواط</option>
+                        <option value="8000">أم البواقي</option>
+                        <option value="8000">باتنة</option>
+                        <option value="6000">بجاية</option>
+                        <option value="8000">بسكرة</option>
+                        <option value="8000">بشار</option>
+                        <option value="6000">البليدة</option>
+                        <option value="6000">البويرة</option>
+                        <option value="10000">تمنراست</option>
+                        <option value="8000">تبسة</option>
+                        <option value="6000">تلمسان</option>
+                        <option value="8000">تيارت</option>
+                        <option value="6000">تيزي وزو</option>
+                        <option value="5000">الجزائر</option>
+                        <option value="8000">الجلفة</option>
+                        <option value="6000">جيجل</option>
+                        <option value="8000">سطيف</option>
+                        <option value="8000">سعيدة</option>
+                        <option value="6000">سكيكدة</option>
+                        <option value="6000">سيدي بلعباس</option>
+                        <option value="6000">عنابة</option>
+                        <option value="6000">قالمة</option>
+                        <option value="6000">قسنطينة</option>
+                        <option value="8000">المدية</option>
+                        <option value="6000">مستغانم</option>
+                        <option value="8000">المسيلة</option>
+                        <option value="6000">معسكر</option>
+                        <option value="10000">ورقلة</option>
+                        <option value="6000">وهران</option>
+                        <option value="8000">البيض</option>
+                        <option value="10000">إليزي</option>
+                        <option value="8000">برج بوعريريج</option>
+                        <option value="6000">بومرداس</option>
+                        <option value="6000">الطارف</option>
+                        <option value="10000">تندوف</option>
+                        <option value="8000">تيسمسيلت</option>
+                        <option value="10000">الوادي</option>
+                        <option value="8000">خنشلة</option>
+                        <option value="6000">سوق أهراس</option>
+                        <option value="6000">تيبازة</option>
+                        <option value="6000">ميلة</option>
+                        <option value="6000">عين الدفلى</option>
+                        <option value="8000">النعامة</option>
+                        <option value="6000">عين تموشنت</option>
+                        <option value="10000">غرداية</option>
+                        <option value="6000">غليزان</option>
+                        <option value="10000">تيميمون</option>
+                        <option value="10000">برج باجي مختار</option>
+                        <option value="10000">أولاد جلال</option>
+                        <option value="10000">بني عباس</option>
+                        <option value="10000">عين صالح</option>
+                        <option value="10000">عين قزام</option>
+                        <option value="10000">تقرت</option>
+                        <option value="10000">المنيعة</option>
+                        <option value="10000">المغير</option>
+                        <option value="10000">جانت</option>
+                        <option value="6000">الميزاب</option>
                     </select>
 
                     <button type="submit" class="submit-btn">تأكيد الطلب</button>
@@ -792,6 +833,14 @@
             <p>&copy; 2025 جميع الحقوق محفوظة لمناحل وعسل آل بوسعيدي</p>
         </div>
     </footer>
+    
+    <!-- Confirmation Message Modal -->
+    <div id="confirmation-modal" class="confirmation-message">
+        <h3 id="confirmation-title">تم تأكيد الطلب بنجاح!</h3>
+        <p>شكراً لطلبك، سنتصل بك في أقرب وقت ممكن لتأكيد التفاصيل.</p>
+        <div id="confirmation-details"></div>
+        <button id="close-modal-btn" class="close-btn">إغلاق</button>
+    </div>
 
     <script>
         // دالة لتنسيق أي سعر بالدينار الجزائري ليتم عرضه بصيغة "ألف"
@@ -849,13 +898,45 @@
             }
         }
 
-        // منطق إرسال النموذج
+        // منطق إرسال النموذج المحدث لإظهار رسالة تأكيد
         const form = document.getElementById('order-form');
         form.addEventListener('submit', function(event) {
             event.preventDefault();
+            
+            // جلب بيانات النموذج
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const wilaya = document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].text;
+            const offer = document.getElementById('summary-offer').textContent;
+            const total = document.getElementById('summary-total').textContent;
+            
+            // التحقق من صحة البيانات الأساسية
+            if (!name || !phone || wilaya === 'اختر ولايتك' || offer === 'لم يتم اختيار عرض بعد') {
+                return; // لا تفعل شيئًا إذا كانت البيانات غير كاملة
+            }
+            
+            // إعداد محتوى رسالة التأكيد
+            const confirmationDetails = `
+                <p><strong>الاسم:</strong> ${name}</p>
+                <p><strong>رقم الهاتف:</strong> ${phone}</p>
+                <p><strong>الولاية:</strong> ${wilaya}</p>
+                <p><strong>العرض:</strong> ${offer}</p>
+                <p><strong>المجموع الكلي:</strong> ${total}</p>
+            `;
+            
+            // عرض رسالة التأكيد
+            document.getElementById('confirmation-details').innerHTML = confirmationDetails;
+            document.getElementById('confirmation-modal').style.display = 'block';
+
             // في سيناريو حقيقي، سيتم إرسال البيانات إلى الخادم هنا
-            // مثال: باستخدام fetch() API
+            // console.log('Order submitted:', { name, phone, wilaya, offer, total });
         });
+
+        // منطق إغلاق رسالة التأكيد
+        document.getElementById('close-modal-btn').addEventListener('click', function() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        });
+
     </script>
 </body>
 </html>
