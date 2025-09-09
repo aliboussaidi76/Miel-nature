@@ -464,46 +464,6 @@
             font-size: 0.8rem;
         }
 
-        /* Confirmation Message Styles */
-        .confirmation-message {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            width: 90%;
-            max-width: 400px;
-            z-index: 1001;
-            display: none; /* Initially hidden */
-            border: 2px solid var(--primary-color);
-        }
-
-        .confirmation-message h3 {
-            color: var(--button-dark-color);
-            margin-bottom: 15px;
-            font-size: 1.8rem;
-        }
-
-        .confirmation-message p {
-            font-size: 1rem;
-            line-height: 1.8;
-            margin-bottom: 10px;
-        }
-        .confirmation-message .close-btn {
-            margin-top: 20px;
-            padding: 10px 25px;
-            background-color: var(--button-dark-color);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-
     </style>
 </head>
 <body>
@@ -833,14 +793,6 @@
             <p>&copy; 2025 جميع الحقوق محفوظة لمناحل وعسل آل بوسعيدي</p>
         </div>
     </footer>
-    
-    <!-- Confirmation Message Modal -->
-    <div id="confirmation-modal" class="confirmation-message">
-        <h3 id="confirmation-title">تم تأكيد الطلب بنجاح!</h3>
-        <p>شكراً لطلبك، سنتصل بك في أقرب وقت ممكن لتأكيد التفاصيل.</p>
-        <div id="confirmation-details"></div>
-        <button id="close-modal-btn" class="close-btn">إغلاق</button>
-    </div>
 
     <script>
         // دالة لتنسيق أي سعر بالدينار الجزائري ليتم عرضه بصيغة "ألف"
@@ -898,7 +850,7 @@
             }
         }
 
-        // منطق إرسال النموذج المحدث لإظهار رسالة تأكيد
+        // منطق إرسال النموذج المحدث لإعادة التوجيه إلى صفحة الشكر
         const form = document.getElementById('order-form');
         form.addEventListener('submit', function(event) {
             event.preventDefault();
@@ -906,37 +858,22 @@
             // جلب بيانات النموذج
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
-            const wilaya = document.getElementById('wilaya').options[document.getElementById('wilaya').selectedIndex].text;
+            const wilayaSelect = document.getElementById('wilaya');
+            const wilaya = wilayaSelect.options[wilayaSelect.selectedIndex].text;
             const offer = document.getElementById('summary-offer').textContent;
             const total = document.getElementById('summary-total').textContent;
             
             // التحقق من صحة البيانات الأساسية
             if (!name || !phone || wilaya === 'اختر ولايتك' || offer === 'لم يتم اختيار عرض بعد') {
-                return; // لا تفعل شيئًا إذا كانت البيانات غير كاملة
+                return;
             }
             
-            // إعداد محتوى رسالة التأكيد
-            const confirmationDetails = `
-                <p><strong>الاسم:</strong> ${name}</p>
-                <p><strong>رقم الهاتف:</strong> ${phone}</p>
-                <p><strong>الولاية:</strong> ${wilaya}</p>
-                <p><strong>العرض:</strong> ${offer}</p>
-                <p><strong>المجموع الكلي:</strong> ${total}</p>
-            `;
+            // بناء سلسلة الاستعلام
+            const queryString = `?name=${encodeURIComponent(name)}&phone=${encodeURIComponent(phone)}&wilaya=${encodeURIComponent(wilaya)}&offer=${encodeURIComponent(offer)}&total=${encodeURIComponent(total)}`;
             
-            // عرض رسالة التأكيد
-            document.getElementById('confirmation-details').innerHTML = confirmationDetails;
-            document.getElementById('confirmation-modal').style.display = 'block';
-
-            // في سيناريو حقيقي، سيتم إرسال البيانات إلى الخادم هنا
-            // console.log('Order submitted:', { name, phone, wilaya, offer, total });
+            // إعادة التوجيه إلى صفحة الشكر
+            window.location.href = `thank_you.html${queryString}`;
         });
-
-        // منطق إغلاق رسالة التأكيد
-        document.getElementById('close-modal-btn').addEventListener('click', function() {
-            document.getElementById('confirmation-modal').style.display = 'none';
-        });
-
     </script>
 </body>
 </html>
