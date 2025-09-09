@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شكراً لطلبك!</title>
+    <title>شكراً لك!</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
         :root {
-            --primary-color: #FFD700;
-            --secondary-color: #D4AC0D;
-            --dark-color: #5C3D2E;
-            --light-color: #FFF9E6;
-            --button-dark-color: #8B5E3C;
+            --primary-color: #FFD700; /* Gold */
+            --secondary-color: #D4AC0D; /* Goldenrod */
+            --dark-color: #5C3D2E; /* Dark Honey Brown */
+            --light-color: #FFF9E6; /* Creamy White */
+            --button-dark-color: #8B5E3C; /* Darker Brown for Buttons */
             --font-family: 'Cairo', sans-serif;
             --star-color: #FFD700;
         }
@@ -22,78 +22,75 @@
             background-color: var(--light-color);
             color: var(--dark-color);
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Align content to the top */
             align-items: center;
+            flex-direction: column; /* Stack content vertically */
             min-height: 100vh;
             text-align: center;
             padding: 20px;
-            flex-direction: column; /* Allow content to stack */
         }
-
-        .thank-you-container {
+        
+        .thankyou-container {
             background-color: white;
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             max-width: 500px;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 50px;
+            margin-top: 50px;
         }
 
-        .thank-you-container .icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: var(--primary-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .thank-you-container .icon svg {
-            fill: none;
-            stroke: var(--dark-color);
-            stroke-width: 3;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        h1 {
+        .thankyou-container h1 {
             font-size: 2.5rem;
-            color: var(--dark-color);
-        }
-
-        p {
-            font-size: 1.1rem;
-            color: #555;
+            color: var(--button-dark-color);
             margin-bottom: 20px;
         }
 
-        .home-btn {
-            background-color: var(--button-dark-color);
-            color: white;
-            padding: 12px 25px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
+        .thankyou-container p {
             font-size: 1.1rem;
-            transition: background-color 0.3s ease;
+            color: #555;
+            margin-bottom: 30px;
         }
 
-        .home-btn:hover {
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .thankyou-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .main-page-btn {
+            background-color: var(--button-dark-color);
+        }
+
+        .main-page-btn:hover {
             background-color: var(--dark-color);
+            transform: translateY(-2px);
+        }
+
+        .products-btn {
+            background-color: var(--primary-color);
+        }
+
+        .products-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
         /* Upsell Section Styles */
         .upsell-section {
             width: 100%;
             max-width: 1100px;
-            margin-top: 40px;
+            margin-top: 60px;
         }
 
         .upsell-section h2 {
@@ -181,19 +178,18 @@
     </style>
 </head>
 <body>
-    <div class="thank-you-container">
-        <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40">
-                <path d="M20 6L9 17l-5-5"/>
-            </svg>
+
+    <div class="thankyou-container">
+        <h1>شكراً لك على طلبك!</h1>
+        <p>لقد تم استلام طلبك بنجاح وسنقوم بالتواصل معك قريباً لتأكيده. نأمل أن تستمتع بالمنتج!</p>
+        <div class="button-group">
+            <a href="index.html" class="thankyou-btn main-page-btn">العودة إلى الصفحة الرئيسية</a>
+            <a href="#upsell-products-section" class="thankyou-btn products-btn">منتجات قد تعجبك</a>
         </div>
-        <h1>شكراً لطلبك!</h1>
-        <p>تم استلام طلبك بنجاح. سيقوم فريقنا بالتواصل معكم في أقرب وقت لتأكيد التفاصيل وتوصيل الطلب.</p>
-        <a href="index.html" class="home-btn">العودة إلى الصفحة الرئيسية</a>
     </div>
 
-    <!-- Upsell Section -->
-    <div class="upsell-section">
+    <!-- Upsell Section with smooth scrolling -->
+    <div class="upsell-section" id="upsell-products-section">
         <h2>منتجات قد تعجبك أيضاً</h2>
         <div class="upsell-grid">
             <!-- Product 1 -->
@@ -269,6 +265,15 @@
             </div>
         </div>
     </div>
+<script>
+    // Smooth scrolling for the "Products You May Like" button
+    document.querySelector('.products-btn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+</script>
 </body>
 </html>
 
