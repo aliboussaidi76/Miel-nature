@@ -453,8 +453,7 @@
         .summary-item span:last-child {
             color: var(--dark-color);
         }
-
-
+        
         /* Footer */
         footer {
             text-align: center;
@@ -542,34 +541,92 @@
                     
                     <label for="wilaya">الولاية:</label>
                     <select id="wilaya" name="wilaya" required>
-                        <option value="">اختر ولايتك</option>
-                        <option value="الجزائر">الجزائر</option>
-                        <option value="وهران">وهران</option>
-                        <option value="قسنطينة">قسنطينة</option>
-                        <!-- Add other wilayas here -->
+                        <option value="0">اختر ولايتك</option>
+                        <!-- تم تغيير قيم الولايات لتكون بالدينار الحقيقي -->
+                        <option value="100000">أدرار</option>
+                        <option value="60000">الشلف</option>
+                        <option value="80000">الأغواط</option>
+                        <option value="80000">أم البواقي</option>
+                        <option value="80000">باتنة</option>
+                        <option value="60000">بجاية</option>
+                        <option value="80000">بسكرة</option>
+                        <option value="80000">بشار</option>
+                        <option value="60000">البليدة</option>
+                        <option value="60000">البويرة</option>
+                        <option value="100000">تمنراست</option>
+                        <option value="80000">تبسة</option>
+                        <option value="60000">تلمسان</option>
+                        <option value="80000">تيارت</option>
+                        <option value="60000">تيزي وزو</option>
+                        <option value="50000">الجزائر</option>
+                        <option value="80000">الجلفة</option>
+                        <option value="60000">جيجل</option>
+                        <option value="80000">سطيف</option>
+                        <option value="80000">سعيدة</option>
+                        <option value="60000">سكيكدة</option>
+                        <option value="60000">سيدي بلعباس</option>
+                        <option value="60000">عنابة</option>
+                        <option value="60000">قالمة</option>
+                        <option value="60000">قسنطينة</option>
+                        <option value="80000">المدية</option>
+                        <option value="60000">مستغانم</option>
+                        <option value="80000">المسيلة</option>
+                        <option value="60000">معسكر</option>
+                        <option value="100000">ورقلة</option>
+                        <option value="60000">وهران</option>
+                        <option value="80000">البيض</option>
+                        <option value="100000">إليزي</option>
+                        <option value="80000">برج بوعريريج</option>
+                        <option value="60000">بومرداس</option>
+                        <option value="60000">الطارف</option>
+                        <option value="100000">تندوف</option>
+                        <option value="80000">تيسمسيلت</option>
+                        <option value="100000">الوادي</option>
+                        <option value="80000">خنشلة</option>
+                        <option value="60000">سوق أهراس</option>
+                        <option value="60000">تيبازة</option>
+                        <option value="60000">ميلة</option>
+                        <option value="60000">عين الدفلى</option>
+                        <option value="80000">النعامة</option>
+                        <option value="600000">عين تموشنت</option>
+                        <option value="100000">غرداية</option>
+                        <option value="60000">غليزان</option>
+                        <option value="100000">تيميمون</option>
+                        <option value="100000">برج باجي مختار</option>
+                        <option value="100000">أولاد جلال</option>
+                        <option value="100000">بني عباس</option>
+                        <option value="100000">عين صالح</option>
+                        <option value="100000">عين قزام</option>
+                        <option value="100000">تقرت</option>
+                        <option value="100000">المنيعة</option>
+                        <option value="100000">المغير</option>
+                        <option value="100000">جانت</option>
+                        <option value="60000">الميزاب</option>
                     </select>
 
                     <button type="submit" class="submit-btn">اطلب الآن</button>
                 </form>
 
                 <!-- Order Summary -->
-                <div class="order-summary" id="order-summary-section" style="display: none;">
+                <div class="order-summary" id="order-summary-section">
                     <h3>ملخص الطلب</h3>
                     <div class="summary-item">
                         <span>العرض الذي اخترته:</span>
-                        <span id="summary-offer"></span>
+                        <span id="summary-offer">لم يتم اختيار عرض بعد</span>
                     </div>
+                    <!-- Added a hidden input to store the offer price for later calculation -->
+                    <input type="hidden" id="selected-offer-price" value="0">
                     <div class="summary-item">
                         <span>سعر العرض:</span>
-                        <span id="summary-price"></span>
+                        <span id="summary-price">0 ألف</span>
                     </div>
                     <div class="summary-item">
                         <span>سعر التوصيل:</span>
-                        <span id="summary-delivery">60 ألف</span>
+                        <span id="summary-delivery">يرجى اختيار ولاية</span>
                     </div>
                     <div class="summary-item total">
                         <span>المجموع الكلي:</span>
-                        <span id="summary-total"></span>
+                        <span id="summary-total">0 ألف</span>
                     </div>
                 </div>
             </section>
@@ -737,47 +794,70 @@
     </footer>
 
     <script>
-        // Formatting function for prices
+        // دالة لتنسيق أي سعر بالدينار الجزائري ليتم عرضه بصيغة "ألف"
         function formatPrice(price) {
-            if (price >= 1000) {
-                return (price / 1000) + ' ألف';
-            }
-            return price;
+            return (price / 1000) + ' ألف';
         }
 
-        // Smooth scroll for "Order Now" buttons and updating order summary
+        // متغير لتخزين سعر العرض المختار
+        let selectedOfferPrice = 0;
+
+        // إضافة مستمعي الأحداث لجميع أزرار "اطلب الآن"
         document.querySelectorAll('.buy-btn').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const offerName = this.getAttribute('data-offer');
                 const offerPrice = parseInt(this.getAttribute('data-price'));
-                const deliveryPrice = 60000; // Updated delivery price as per user request
-                const total = offerPrice + deliveryPrice;
 
-                // Update summary fields
+                // تحديث المتغير العام وحقل الإدخال المخفي بسعر العرض المختار
+                selectedOfferPrice = offerPrice;
+                document.getElementById('selected-offer-price').value = offerPrice;
+
+                // تحديث حقول الملخص باستخدام الدوال الجديدة
                 document.getElementById('summary-offer').textContent = offerName;
                 document.getElementById('summary-price').textContent = formatPrice(offerPrice);
-                document.getElementById('summary-delivery').textContent = formatPrice(deliveryPrice);
-                document.getElementById('summary-total').textContent = formatPrice(total);
+                
+                // إعادة حساب المجموع الكلي بناءً على الولاية المختارة
+                updateTotal();
 
-                // Show the summary section
-                document.getElementById('order-summary-section').style.display = 'block';
-
-                // Scroll to the form section
+                // التمرير إلى قسم النموذج
                 document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
             });
         });
 
-        // Form submission logic
+        // إضافة مستمع حدث لتغيير الولاية
+        document.getElementById('wilaya').addEventListener('change', updateTotal);
+
+        // دالة لتحديث المجموع الكلي
+        function updateTotal() {
+            const wilayaSelect = document.getElementById('wilaya');
+            const deliveryPrice = parseInt(wilayaSelect.value);
+            const offerPrice = parseInt(document.getElementById('selected-offer-price').value);
+
+            if (!isNaN(deliveryPrice) && !isNaN(offerPrice) && offerPrice > 0) {
+                // حساب المجموع الكلي: سعر العرض + سعر التوصيل
+                const total = offerPrice + deliveryPrice;
+                document.getElementById('summary-delivery').textContent = formatPrice(deliveryPrice);
+                document.getElementById('summary-total').textContent = formatPrice(total);
+            } else {
+                // إعادة الحقول إلى حالتها الأولية إذا لم يتم اختيار عرض أو ولاية صحيحة
+                document.getElementById('summary-delivery').textContent = 'يرجى اختيار ولاية';
+                document.getElementById('summary-total').textContent = '0 ألف';
+            }
+        }
+
+        // منطق إرسال النموذج
         const form = document.getElementById('order-form');
         form.addEventListener('submit', function(event) {
             event.preventDefault();
-            window.location.href = 'thankyou.html';
+            // في سيناريو حقيقي، سيتم إرسال البيانات إلى الخادم هنا
+            // مثال: باستخدام fetch() API
         });
     </script>
 </body>
 </html>
+
 
