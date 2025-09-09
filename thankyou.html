@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شكراً لك!</title>
+    <title>صفحة الشكر</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
         :root {
@@ -13,267 +15,152 @@
             --dark-color: #5C3D2E; /* Dark Honey Brown */
             --light-color: #FFF9E6; /* Creamy White */
             --button-dark-color: #8B5E3C; /* Darker Brown for Buttons */
-            --font-family: 'Cairo', sans-serif;
             --star-color: #FFD700;
         }
 
         body {
-            font-family: var(--font-family);
-            background-color: var(--light-color);
-            color: var(--dark-color);
-            display: flex;
-            justify-content: flex-start; /* Align content to the top */
-            align-items: center;
-            flex-direction: column; /* Stack content vertically */
-            min-height: 100vh;
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .thankyou-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
-            margin-top: 50px;
-        }
-
-        .thankyou-container h1 {
-            font-size: 2.5rem;
-            color: var(--button-dark-color);
-            margin-bottom: 20px;
-        }
-
-        .thankyou-container p {
-            font-size: 1.1rem;
-            color: #555;
-            margin-bottom: 30px;
-        }
-
-        .button-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .thankyou-btn {
-            display: inline-block;
-            padding: 15px 30px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .main-page-btn {
-            background-color: var(--button-dark-color);
-        }
-
-        .main-page-btn:hover {
-            background-color: var(--dark-color);
-            transform: translateY(-2px);
-        }
-
-        .products-btn {
-            background-color: var(--primary-color);
-        }
-
-        .products-btn:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Upsell Section Styles */
-        .upsell-section {
-            width: 100%;
-            max-width: 1100px;
-            margin-top: 60px;
-        }
-
-        .upsell-section h2 {
-            font-size: 1.8rem;
-            text-align: center;
-            color: var(--dark-color);
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .upsell-section h2::after {
-            content: '';
-            width: 60px;
-            height: 3px;
-            background: var(--primary-color);
-            display: block;
-            margin: 8px auto 0;
-            border-radius: 2px;
-        }
-
-        .upsell-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-        }
-
-        .product-card img {
-            width: 100%;
-            max-height: 150px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin-bottom: 15px;
-        }
-
-        .product-card .product-title {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--button-dark-color);
-            margin-bottom: 5px;
-        }
-
-        .product-card .product-slogan {
-            font-size: 0.9rem;
-            color: #777;
-            min-height: 40px; /* Ensures consistent card height */
-        }
-
-        .product-card .stars {
-            color: var(--star-color);
-            margin-top: 10px;
-            font-size: 1rem;
-        }
-
-        .upsell-btn {
-            background-color: var(--primary-color);
-            color: var(--dark-color);
-            padding: 10px 20px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1rem;
-            margin-top: 15px;
-            display: inline-block;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .upsell-btn:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background-color: #f3f4f6;
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 md:p-8">
 
-    <div class="thankyou-container">
-        <h1>شكراً لك على طلبك!</h1>
-        <p>لقد تم استلام طلبك بنجاح وسنقوم بالتواصل معك قريباً لتأكيده. نأمل أن تستمتع بالمنتج!</p>
-        <div class="button-group">
-            <a href="index.html" class="thankyou-btn main-page-btn">العودة إلى الصفحة الرئيسية</a>
-            <a href="#upsell-products-section" class="thankyou-btn products-btn">منتجات قد تعجبك</a>
+    <!-- Container for the thank you message. The styling ensures it looks good on both small and large screens. -->
+    <div class="bg-white rounded-xl shadow-lg p-6 sm:p-8 max-w-sm sm:max-w-md md:max-w-xl w-full text-center transform transition-all duration-500 ease-in-out hover:scale-105">
+        <div class="mb-4 sm:mb-6">
+            <!-- Checkmark SVG icon for visual confirmation -->
+            <svg class="mx-auto w-12 h-12 sm:w-16 sm:h-16 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
         </div>
+        <!-- Main title of the page -->
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 sm:mb-4">شكراً لك!</h1>
+        <!-- Main thank you message -->
+        <p class="text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-6">تمت معالجة طلبك بنجاح. نقدر اهتمامك.</p>
+        <!-- A small info box for additional details -->
+        <div class="bg-gray-100 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
+            <p class="text-xs sm:text-sm text-gray-500">
+                إذا كان لديك أي أسئلة أو استفسارات، يمكنك التواصل معنا.
+            </p>
+        </div>
+        <!-- A call-to-action button to return to the home page -->
+        <a href="#" class="inline-block bg-blue-600 text-white font-medium py-2 sm:py-3 px-4 sm:px-6 rounded-full shadow-md hover:bg-blue-700 transition-colors duration-300 text-sm sm:text-base">
+            العودة إلى الصفحة الرئيسية
+        </a>
     </div>
 
-    <!-- Upsell Section with smooth scrolling -->
-    <div class="upsell-section" id="upsell-products-section">
-        <h2>منتجات قد تعجبك أيضاً</h2>
-        <div class="upsell-grid">
+    <!-- Upsell Section -->
+    <section class="mt-12 sm:mt-16 w-full max-w-5xl">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 text-center mb-6">منتجات قد تعجبك أيضاً</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+            
             <!-- Product 1 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/FFD700/5C3D2E?text=عسل+السدر" alt="عسل السدر الفاخر">
-                <h3 class="product-title">عسل السدر الفاخر</h3>
-                <p class="product-slogan">جودة لا تُضاهى، غني بفوائد الطبيعة الخالصة.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/FFD700/5C3D2E?text=عسل+السدر" alt="عسل السدر الفاخر" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">عسل السدر الفاخر</h3>
+                    <p class="text-sm text-gray-500 my-1">جودة لا تُضاهى، غني بفوائد الطبيعة الخالصة.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
 
             <!-- Product 2 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/D4AC0D/5C3D2E?text=عسل+الحبة+السوداء" alt="عسل حبة البركة (الحبة السوداء)">
-                <h3 class="product-title">عسل حبة البركة</h3>
-                <p class="product-slogan">لصحة أفضل، قوة ومناعة لا تُقهر.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
-            </div>
-
-            <!-- Product 3 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/8B5E3C/FFFFFF?text=عسل+الخزامى" alt="عسل الخزامى الطبيعي">
-                <h3 class="product-title">عسل الخزامى</h3>
-                <p class="product-slogan">مذاق فريد وهادئ، مثالي للاسترخاء.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/D4AC0D/5C3D2E?text=عسل+الحبة+السوداء" alt="عسل حبة البركة (الحبة السوداء)" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">عسل حبة البركة</h3>
+                    <p class="text-sm text-gray-500 my-1">لصحة أفضل، قوة ومناعة لا تُقهر.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
             
-            <!-- Product 4 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/FFD700/5C3D2E?text=غذاء+ملكات+النحل" alt="غذاء ملكات النحل">
-                <h3 class="product-title">غذاء ملكات النحل</h3>
-                <p class="product-slogan">سر النحل للحيوية والنشاط الدائم.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <!-- Product 3 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/8B5E3C/FFFFFF?text=عسل+الخزامى" alt="عسل الخزامى الطبيعي" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">عسل الخزامى</h3>
+                    <p class="text-sm text-gray-500 my-1">مذاق فريد وهادئ، مثالي للاسترخاء.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
 
+            <!-- Product 4 -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/FFD700/5C3D2E?text=غذاء+ملكات+النحل" alt="غذاء ملكات النحل" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">غذاء ملكات النحل</h3>
+                    <p class="text-sm text-gray-500 my-1">سر النحل للحيوية والنشاط الدائم.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
+            </div>
+            
             <!-- Product 5 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/D4AC0D/5C3D2E?text=حبوب+اللقاح" alt="حبوب اللقاح">
-                <h3 class="product-title">حبوب اللقاح</h3>
-                <p class="product-slogan">كنز الطبيعة لتعزيز الصحة العامة.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/D4AC0D/5C3D2E?text=حبوب+اللقاح" alt="حبوب اللقاح" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">حبوب اللقاح</h3>
+                    <p class="text-sm text-gray-500 my-1">كنز الطبيعة لتعزيز الصحة العامة.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
 
             <!-- Product 6 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/8B5E3C/FFFFFF?text=عكبر+النحل" alt="عكبر النحل">
-                <h3 class="product-title">عكبر النحل</h3>
-                <p class="product-slogan">الحماية الطبيعية من الأمراض.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/8B5E3C/FFFFFF?text=عكبر+النحل" alt="عكبر النحل" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">عكبر النحل</h3>
+                    <p class="text-sm text-gray-500 my-1">الحماية الطبيعية من الأمراض.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
 
             <!-- Product 7 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/FFD700/5C3D2E?text=عسل+جبلي" alt="عسل جبلي نقي">
-                <h3 class="product-title">عسل جبلي نقي</h3>
-                <p class="product-slogan">مذاق أصيل من أعالي الجبال.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/FFD700/5C3D2E?text=عسل+جبلي" alt="عسل جبلي نقي" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">عسل جبلي نقي</h3>
+                    <p class="text-sm text-gray-500 my-1">مذاق أصيل من أعالي الجبال.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
 
             <!-- Product 8 -->
-            <div class="product-card">
-                <img src="https://placehold.co/200x200/D4AC0D/5C3D2E?text=عسل+أبيض" alt="العسل الأبيض الفاخر">
-                <h3 class="product-title">العسل الأبيض</h3>
-                <p class="product-slogan">نكهة فريدة وقيمة غذائية عالية.</p>
-                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-                <a href="#" class="upsell-btn">اطلب الآن</a>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-105">
+                <img src="https://placehold.co/400x300/D4AC0D/5C3D2E?text=عسل+أبيض" alt="العسل الأبيض الفاخر" class="w-full h-40 object-cover">
+                <div class="p-4 text-center">
+                    <h3 class="font-bold text-gray-800">العسل الأبيض</h3>
+                    <p class="text-sm text-gray-500 my-1">نكهة فريدة وقيمة غذائية عالية.</p>
+                    <div class="flex justify-center text-yellow-400 text-lg mt-2 mb-3">
+                        <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span>
+                    </div>
+                    <a href="#" class="inline-block bg-green-500 text-white font-medium py-2 px-6 rounded-full text-sm hover:bg-green-600">اطلب الآن</a>
+                </div>
             </div>
         </div>
-    </div>
-<script>
-    // Smooth scrolling for the "Products You May Like" button
-    document.querySelector('.products-btn').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-</script>
+    </section>
+
 </body>
 </html>
 
